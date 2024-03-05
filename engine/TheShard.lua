@@ -34,7 +34,7 @@ function TheShard:GetDefaultShardEnabled()
     return true 
 end
 
--- Returns whether a player is in the process of migrating between two shards.
+-- Returns `true` if the given player is in the process of migrating between two shards.
 -- e.g. from Forest to Caves, or vice versa.
 --
 -- See `SinkholeSpawner:UpdateTarget` (`scripts/components/sinkholespawner.lua:85`).
