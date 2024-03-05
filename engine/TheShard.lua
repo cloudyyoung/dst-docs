@@ -11,7 +11,8 @@ function TheShard:IsPlayer()
     return true
 end
 
--- Returns `true` if the current instance of `TheShard` is the master simulation.
+-- Returns `true` if the current instance of `TheShard` is the master simulation,
+-- as specified in `server.ini` in shard folder.
 -- e.g. Forest is typically the master shard.
 function TheShard:IsMaster() 
     return true 
@@ -23,7 +24,7 @@ function TheShard:IsSecondary()
     return not TheShard:IsMaster()
 end
 
--- Seems to return `1` for master shards. Perhaps with 2+ shards there are more IDs.
+-- Returns the shard ID, as specified in `[SHARD]`.`id` in `server.ini` in shard folder.
 function TheShard:GetShardId()
     return 1
 end
@@ -33,12 +34,13 @@ function TheShard:GetDefaultShardEnabled()
     return true 
 end
 
+-- Returns whether a player is in the process of migrating between two shards.
+-- e.g. from Forest to Caves, or vice versa.
+--
 -- See `SinkholeSpawner:UpdateTarget` (`scripts/components/sinkholespawner.lua:85`).
 -- 
 -- Also note Vito's comment: `"TheShard:IsMigrating(userid) only works on master shard"`
--- 
--- This probably has to do with Antlion?
----@param userid string Klei user ID of a player.
+---@param userid string Klei user ID of a player, starts with `KU_`.
 function TheShard:IsMigrating(userid)
     print(userid, "is migrating shards.")
 end
